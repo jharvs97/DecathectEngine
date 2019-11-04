@@ -1,0 +1,3 @@
+[submodule "DecathectEngine/vendor/spdlog"]
+	path = DecathectEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
