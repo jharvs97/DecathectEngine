@@ -1,5 +1,8 @@
 #include "Application.h"
 
+#include "Decathect/Events/ApplicationEvent.h"
+#include "Decathect/Log.h"
+
 namespace Decathect {
 	Application::Application()
 	{
@@ -9,8 +12,10 @@ namespace Decathect {
 	}
 	void Application::Run()
 	{
-		while (true);
-		
-	}
+		// Testing the Window Resize event
+		WindowResizeEvent e(600, 800);
+		DCTHCT_TRACE(e);
 
+		while (true);
+	}
 }
