@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "DecathectEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "DecathectEngine/vendor/Glad/include"
 
 include "DecathectEngine/vendor/GLFW"
+include "DecathectEngine/vendor/Glad"
 
 project "DecathectEngine"
 	location "DecathectEngine"
@@ -36,12 +38,14 @@ project "DecathectEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -53,8 +57,9 @@ project "DecathectEngine"
 		defines
 		{
 			"DCTHCT_PLATFORM_WINDOWS",
-			"DCTHCT_BUILD_DLL",
-			"_WINDLL"
+			"DCTHCT_BUILD_DLL", 
+            "DCTHCT_ENABLE_ASSERTS",
+            "GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -64,14 +69,17 @@ project "DecathectEngine"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
+        buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
+        buildoptions "/MD"
 		optimize "On"
 	
 	filter "configurations:Dist"
 		defines "HZ_DIST"
+        buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -111,14 +119,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
+        buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
+        buildoptions "/MD"
 		optimize "On"
 	
 	filter "configurations:Dist"
 		defines "HZ_DIST"
+        buildoptions "/MD"
 		optimize "On"
 	
 
