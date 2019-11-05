@@ -1,3 +1,6 @@
 [submodule "DecathectEngine/vendor/spdlog"]
 	path = DecathectEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "DecathectEngine/vendor/GLFW"]
+	path = DecathectEngine/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
