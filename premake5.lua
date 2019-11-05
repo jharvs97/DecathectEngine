@@ -18,6 +18,9 @@ project "DecathectEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "dcthctpch.h"
+	pchsource "DecathectEngine/src/dcthctpch.cpp"
+
 	files 
 	{
 		"%{prj.name}/src/**.h",

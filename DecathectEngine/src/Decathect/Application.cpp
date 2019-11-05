@@ -1,3 +1,4 @@
+#include "dcthctpch.h"
 #include "Application.h"
 
 #include "Decathect/Events/ApplicationEvent.h"
@@ -13,8 +14,8 @@ namespace Decathect {
 	void Application::Run()
 	{
 		// Testing the Window Resize event
-		WindowResizeEvent e(600, 800);
-		DCTHCT_TRACE(e);
+		// WindowResizeEvent e(600, 800);
+		// DCTHCT_TRACE(e);
 
 		while (true);
 	}

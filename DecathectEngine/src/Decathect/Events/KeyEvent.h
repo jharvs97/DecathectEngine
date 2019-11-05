@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-// TODO: Move to precompiled header
-#include <sstream>
 
 namespace Decathect {
 	

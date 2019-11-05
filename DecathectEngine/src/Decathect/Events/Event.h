@@ -2,9 +2,6 @@
 
 #include <Decathect/Core.h>
 
-// TODO: Move these to a precompiled header
-#include <string>
-#include <functional>
 
 namespace Decathect{
 
