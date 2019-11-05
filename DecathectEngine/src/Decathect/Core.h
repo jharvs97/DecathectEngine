@@ -10,4 +10,12 @@
 	#error Decathect only supports Windows
 #endif
 
+#ifdef DCTHCT_ENABLE_ASSERTS
+	#define DCTHCT_ASSERT(stmnt, ...) { if(!(stmnt)) { DCTHCT_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define DCTHCT_CORE_ASSERT(stmnt, ...) { if(!(stmnt)) { DCTHCT_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+	#define DCTHCT_ASSERT(stmnt, ...)
+	#define DCTHCT_CORE_ASSERT(stmnt, ...)
+#endif
+
 #define BIT(x) (1 << x)
