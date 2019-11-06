@@ -18,11 +18,13 @@ namespace Decathect {
 	{
 		m_Layers.emplace(m_Layers.begin() + m_LayerHeadOffset, layer);
 		m_LayerHeadOffset++;
+		layer->OnAttach();
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_Layers.emplace_back(overlay);
+		overlay->OnAttach();
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
@@ -33,20 +35,22 @@ namespace Decathect {
 
 		if (it != m_Layers.begin() + m_LayerHeadOffset)
 		{
+			layer->OnDetach();
 			m_Layers.erase(it);
 			m_LayerHeadOffset--;
 		}
 
 	}
 
-	void LayerStack::PopOverlay(Layer* layer)
+	void LayerStack::PopOverlay(Layer* overlay)
 	{
 		// Find the current overlay from the beginning of the
 		// "Overlay stack" that sits upon the layer stack
-		auto it = std::find(m_Layers.begin() + m_LayerHeadOffset, m_Layers.end(), layer);
+		auto it = std::find(m_Layers.begin() + m_LayerHeadOffset, m_Layers.end(), overlay);
 
 		if (it != m_Layers.end())
 		{
+			overlay->OnDetach();
 			m_Layers.erase(it);
 		}
 

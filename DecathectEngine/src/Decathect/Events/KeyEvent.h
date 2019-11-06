@@ -56,4 +56,20 @@ namespace Decathect {
 		EVENT_CLASS_TYPE(KeyReleased)
 
 	};
+
+	class DCTHCT_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int key)
+			: KeyEvent(key) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
 }

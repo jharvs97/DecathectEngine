@@ -6,12 +6,15 @@
 
 namespace Decathect {
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1) // Learn about std::bind
+	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
+		DCTHCT_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetEventCallback(DCTHCT_BIND_EVENT_FN(Application::OnEvent));
 	}
 
 	Application::~Application()
@@ -32,9 +35,9 @@ namespace Decathect {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowCloseEvent>(DCTHCT_BIND_EVENT_FN(Application::OnWindowClose));
 
-		DCTHCT_CORE_TRACE("{0}", e);
+		//DCTHCT_CORE_TRACE("Application Event: {0}", e);
 
 		// Iterate backwards through the Layer Stack
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -56,7 +59,7 @@ namespace Decathect {
 		while (m_Running)
 		{
 			/* Testing GL Window REMOVE LATER */
-			glClearColor(1, 0, 0, 1); 
+			glClearColor(255.0f / 255.0f, 119.0f / 255.0f, 56.0f / 255.0f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)

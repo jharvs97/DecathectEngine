@@ -10,6 +10,7 @@
 #include <glad/glad.h>
 
 namespace Decathect {
+
 	static bool s_GLFWInitialized = false;
 
 	static void GLFWErrorCallback(int error, const char* desc)
@@ -100,6 +101,14 @@ namespace Decathect {
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *((WindowData*)glfwGetWindowUserPointer(window));
+
+			KeyTypedEvent e(keycode);
+			data.EventCallback(e);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)

@@ -18,7 +18,7 @@ namespace Decathect {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouesMovedEvent: (" << m_MouseX << ", " << m_MouseY << ")";
+			ss << "MouseMovedEvent: (" << m_MouseX << ", " << m_MouseY << ")";
 			return ss.str();
 		}
 
@@ -41,7 +41,7 @@ namespace Decathect {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouesScrolledEvent: (" << m_OffsetX << ", " << m_OffsetY << ")";
+			ss << "MouseScrolledEvent: (" << m_OffsetX << ", " << m_OffsetY << ")";
 			return ss.str();
 		}
 
