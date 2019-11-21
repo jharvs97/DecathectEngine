@@ -9,6 +9,8 @@ int main(int argc, char** argv)
 	Decathect::Log::Init();
 	DCTHCT_INFO("Logger Initialised!");
 
+	
+
 	auto app = Decathect::CreateApp(); 
 	app->Run();
 	delete app;
