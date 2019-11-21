@@ -13,9 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "DecathectEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "DecathectEngine/vendor/Glad/include"
+IncludeDir["ImGui"] = "DecathectEngine/vendor/imgui"
 
 include "DecathectEngine/vendor/GLFW"
 include "DecathectEngine/vendor/Glad"
+include "DecathectEngine/vendor/imgui"
 
 project "DecathectEngine"
 	location "DecathectEngine"
@@ -39,13 +41,15 @@ project "DecathectEngine"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+        "ImGui",
 		"opengl32.lib"
 	}
 
